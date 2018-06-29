@@ -17,7 +17,7 @@ Explanation: 13 = 4 + 9.
 '''
 
 class Solution:
-    # update a dp list, for each round check through all possible combinations of squares (1 square with length i
+    # update a dp list, for each round check all possible combinations of squares (1 square with length i
     # and the smallest number of the rest squares has been calculated and stored in dp[-i*i]) and find the smallest
     # dp[-i*i] and plus extra 1 (square with length i)
     def numSquares(self, n):
