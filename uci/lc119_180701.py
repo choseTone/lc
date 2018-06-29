@@ -1,5 +1,7 @@
 __author__ = 'wangqc'
 
+import time
+
 '''
 119. Pascal's Triangle II
 Given a non-negative index k where k ≤ 33, return the kth index row of the Pascal's triangle.
@@ -24,4 +26,6 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    print(sol.getRow(31))
+    t = time.time()
+    ans = sol.getRow(12)
+    print('ans: %s\ntime: %.2fms' % (ans, ((time.time() - t)) * 1000))

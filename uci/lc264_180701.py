@@ -1,5 +1,7 @@
 __author__ = 'wangqc'
 
+import time
+
 '''
 264. Ugly Number II
 
@@ -45,5 +47,9 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    print(sol.nthUglyNumber(1690))
-    print(sol.nthUglyNumber_cheat(1690))
+    t1 = time.time()
+    ans1 = sol.nthUglyNumber(1690)
+    t2 = time.time()
+    ans2 = sol.nthUglyNumber_cheat(1690)
+    print('sol1 ans: %d\ntime: %.2fms\n' % (ans1, ((t2 - t1)) * 1000))
+    print('sol2 ans: %d\ntime: %.2fms' % (ans2, ((time.time() - t2)) * 1000))
