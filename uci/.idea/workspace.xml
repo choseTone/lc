@@ -15,29 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="lc119_180701.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="lc119_180701.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lc119_180701.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lc264_180701.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lc264_180701.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="19" column="67" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="builtins.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.1/python_stubs/2058642540/builtins.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
-              <caret line="323" column="4" selection-start-line="323" selection-start-column="4" selection-end-line="323" selection-end-column="4" />
+            <state relative-caret-position="207">
+              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -55,8 +37,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/lc119.py" />
-        <option value="$PROJECT_DIR$/lc119_180701.py" />
         <option value="$PROJECT_DIR$/lc264_180701.py" />
+        <option value="$PROJECT_DIR$/lc119_180701.py" />
       </list>
     </option>
   </component>
@@ -182,11 +164,11 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32876712" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32876712" />
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" />
       <window_info anchor="bottom" id="Terminal" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12625538" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12625538" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="SciView" />
@@ -217,13 +199,6 @@
     <entry file="file://$PROJECT_DIR$/lc119.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/lc119_180701.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.1/python_stubs/2058642540/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-20">
@@ -233,8 +208,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lc264_180701.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
+        <state relative-caret-position="361">
           <caret line="19" column="67" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lc119_180701.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
         </state>
       </provider>
     </entry>

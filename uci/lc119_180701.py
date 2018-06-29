@@ -14,6 +14,7 @@ Could you optimize your algorithm to use only O(k) extra space?
 '''
 
 class Solution:
+    # simple list comprehension
     def getRow(self, rowIndex):
         res = [1]
         for _ in range(rowIndex):
