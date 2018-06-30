@@ -30,13 +30,13 @@ Output: false
 class Solution:
     def wordBreak(self, s, wordDict):
         # update a dp bool list, each element's index i indicates whether s[:i] can be segmented by words in wordDict
-        # first element being True means s[:0](empty string) can be mapped in wordDict; convert wordDict to hash table
-        check, words, n = [True], set(wordDict), len(s)
+        # dp[0] being True means s[:0](empty string) can be mapped in wordDict; convert wordDict to hash table
+        dp, words, n = [True], set(wordDict), len(s)
         for i in range(1, n+1):
-            # if s[j:i] can be founded in wordDict and check[j] is True(s[:j] can be segmented), s[:i] can be segmented
-            check.append(any(s[j:i] in words and check[j] for j in range(i)))
+            # if s[j:i] can be founded in wordDict and dp[j] is True(s[:j] can be segmented), s[:i] can be segmented
+            dp.append(any(s[j:i] in words and dp[j] for j in range(i)))
         # check whether s[:n] or whole s can be segmented
-        return check[n]
+        return dp[n]
 
 if __name__ == '__main__':
     sol = Solution()
