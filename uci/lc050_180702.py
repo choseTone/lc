@@ -29,7 +29,7 @@ class Solution:
     def myPow(self, x, n):
         # recursive call
         if n < 0: x, n = 1 / x, -n
-        return self.myPow(x, n - 1) * x if n % 2 else self.myPow(x * x, n // 2) if n else 1
+        return self.myPow(x, n - 1) * x if n & 1 else self.myPow(x * x, n >> 1) if n else 1
 
 
 
