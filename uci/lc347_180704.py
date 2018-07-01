@@ -39,7 +39,7 @@ class Solution:
         counter, n, ans = {}, len(nums), []
         for num in nums:
             counter[num] = counter.get(num, 0) + 1
-        # push the number with smallest freq out of the full-filled heap
+        # pop the number with smallest freq out of the full-filled heap
         for num, freq in counter.items():
             heapq.heappush(ans, (freq, num))
             if len(ans) > k:
