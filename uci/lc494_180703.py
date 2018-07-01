@@ -43,8 +43,8 @@ class Solution:
 if __name__ == '__main__':
     from random import randint
     sol = Solution()
-    t = time()
     nums, S = [randint(1, 100) for _ in range(20)], randint(1, 100)
+    t = time()
     ans = sol.findTargetSumWays(nums, S)
     # nums: [19, 28, 77, 71, 33, 88, 83, 58, 59, 90, 28, 1, 53, 85, 22, 15, 37, 27, 21, 91] S: 50 ans: 3146
     print('input:\nnums: %s\tS: %d\nans: %s\ntime: %.3fms' % (nums, S, ans, ((time() - t)) * 1000))
