@@ -49,7 +49,7 @@ class Solution:
     # need to independently handle the first row since m[0][0] would be corrupted by first col's zero elements
     def setZeroes(self, matrix):
         m, n = len(matrix), len(matrix[0])
-        row1_has_0 = not all(matrix[0])
+        row0_has_0 = not all(matrix[0])
         for i in range(1, m):
             for j in range(n):
                 if not matrix[i][j]:
@@ -58,7 +58,7 @@ class Solution:
             for j in range(n)[::-1]:
                 if not (matrix[i][0] and matrix[0][j]):
                     matrix[i][j] = 0
-        if row1_has_0:
+        if row0_has_0:
             matrix[0] = [0] * n
 
 
