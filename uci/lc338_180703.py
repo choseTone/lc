@@ -30,7 +30,7 @@ class Solution:
     def countBits_tight(self, num):
         if not num: return [0]
         ans, power, tmp = [0], -1, num
-        # round = log2(num)
+        # power = log2(num)
         while tmp:
             tmp >>= 1
             power += 1
