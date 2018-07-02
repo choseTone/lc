@@ -34,16 +34,14 @@ Output: true
 
 class Solution:
     def isValid(self, s):
-        # using stack
-        stack = []
+        # using stack; store brackets in a hash map inspired by @ethansure
+        # https://github.com/ethansure/Leetcode/blob/master/E20-valid-parentheses.py
+        stack, brackets = [], {'{': '}', '[': ']', '(': ')'}
         for i in s:
-            if i in {'{', '[', '('}:
+            if i in brackets.keys():
                 stack.append(i)
-            elif stack:
-                front = stack.pop()
-                if front == '{' and i != '}' or front == '[' and i != ']' or front == '(' and i != ')':
-                    return False
-            else: return False
+            elif not stack or i != brackets[stack.pop()]:
+                return False
         return not stack
 
 
