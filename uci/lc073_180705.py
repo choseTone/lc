@@ -41,6 +41,7 @@ Could you devise a constant space solution?
 
 
 class Solution:
+    # constant space solution
     # scan matrix in order and set m[i][0] and m[0][j] to 0 if m[i][j] is 0 as the row and col markers
     # then scan matrix to set m[i][j] to 0 if any one of the two markers is 0 (means there is a 0 from same row or col)
     # second scan need to be done reversely otherwise m[i][0] would be scanned first and corrupted by m[i-k][0]
