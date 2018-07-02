@@ -38,7 +38,7 @@ class Solution:
         # https://github.com/ethansure/Leetcode/blob/master/E20-valid-parentheses.py
         stack, brackets = [], {'{': '}', '[': ']', '(': ')'}
         for i in s:
-            if i in brackets.keys():
+            if i in brackets:
                 stack.append(i)
             elif not stack or i != brackets[stack.pop()]:
                 return False
