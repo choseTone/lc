@@ -29,14 +29,11 @@ class Solution:
     # not include [num+1, 2^M-1] in the ans, M = log2(num) + 1
     def countBits_tight(self, num):
         if not num: return [0]
-        ans, power, tmp = [0], -1, num
-        # power = log2(num)
-        while tmp:
-            tmp >>= 1
-            power += 1
-        for _ in range(power):
+        ans, count, limit = [0], 1, num >> 1
+        while count <= limit:
             ans += [i+1 for i in ans]
-        rest = num - (1 << power) + 1
+            count <<= 1
+        rest = num - count + 1
         return ans + [i+1 for i in ans[:rest]]
 
     # update one element each loop, i's top (n-1) bit counts are those of i >> 1, the least significant bit is (i&1)
