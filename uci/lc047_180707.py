@@ -17,6 +17,7 @@ Output:
 
 
 class Solution:
+    # use (p + [n]).index(n) instead of len(p + 1) to wipe out duplicates permutations
     def permuteUnique(self, nums):
         ans = [[]]
         for n in nums:
