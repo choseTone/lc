@@ -34,8 +34,7 @@ Output: true
 
 class Solution:
     def isValid(self, s):
-        # using stack; store brackets in a hash map inspired by @ethansure
-        # https://github.com/ethansure/Leetcode/blob/master/E20-valid-parentheses.py
+        # using stack
         stack, brackets = [], {'{': '}', '[': ']', '(': ')'}
         for i in s:
             if i in brackets:
