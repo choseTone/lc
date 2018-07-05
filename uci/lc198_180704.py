@@ -26,13 +26,10 @@ Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (m
 
 class Solution:
     def rob(self, nums):
-        n = len(nums)
-        if n < 2: return n and nums[0]
         # use dp to update two variables cur_max and prev_max
-        cur_max, prev_max = nums[0], 0
-        for i in range(1, n):
-            tmp, prev_max = prev_max, cur_max
-            cur_max = max(tmp + nums[i], cur_max)
+        cur_max = prev_max = 0
+        for n in nums:
+            cur_max, prev_max = max(prev_max + n, cur_max), cur_max
         return cur_max
 
 
