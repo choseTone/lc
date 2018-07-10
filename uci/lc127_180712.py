@@ -51,13 +51,13 @@ class Solution:
                     for c in lower_letters:
                         new_word = word[:i] + c + word[i+1:]
                         if new_word in eset:
-                            return ans
+                            return ans      # if found, return ans
                         if new_word in wordList:
                             wordList.remove(new_word)
                             cache.add(new_word)
             bset = cache
             ans += 1
-        return ans
+        return 0    # if not found, return 0
 
 
 if __name__ == '__main__':
