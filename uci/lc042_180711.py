@@ -70,7 +70,7 @@ if __name__ == '__main__':
     ans3 = sol.trap_two_pointers(nums)
     t4 = time()
     # nums is a random array with a size of 10**4
-    # sol1 150.87ms; sol1 5.60ms; sol1 1.56ms
+    # sol1 150.87ms; sol2 5.60ms; sol3 1.56ms
     print('ans1: %s\ntime: %.3fms' % (ans1, ((t2 - t1)) * 1000))
     print('ans2: %s\ntime: %.3fms' % (ans2, ((t3 - t2)) * 1000))
     print('ans3: %s\ntime: %.3fms' % (ans3, ((t4 - t3)) * 1000))
