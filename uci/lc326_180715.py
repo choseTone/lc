@@ -45,7 +45,7 @@ class Solution:
         if n <= 0: return False
         log3n = math.log(n, 3)
         return log3n
-    
+
 
 if __name__ == '__main__':
     from time import time
