@@ -41,7 +41,6 @@ class TreeNode:
         self.left = None
         self.right = None
 
-
 class Solution:
     def lowestCommonAncestor(self, root, p, q):
         pv, qv = p.val, q.val

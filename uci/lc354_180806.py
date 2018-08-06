@@ -14,6 +14,7 @@ Given envelopes = [[5,4],[6,4],[6,7],[2,3]], the maximum number of envelopes you
 
 import bisect
 
+
 class Solution:
     def maxEnvelopes(self, envelopes):
         envelopes_h, dolls = [env[1] for env in sorted(envelopes, key=lambda x: (x[0], -x[1]))], []

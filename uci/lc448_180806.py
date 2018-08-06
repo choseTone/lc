@@ -25,7 +25,7 @@ class Solution:
                 next_i = nums[i] - 1
                 while nums[next_i]:
                     nums[next_i], next_i = 0, nums[next_i] - 1
-        return [i+1 for i in range(n) if nums[i]]
+        return [i + 1 for i in range(n) if nums[i]]
 
 
 if __name__ == '__main__':
