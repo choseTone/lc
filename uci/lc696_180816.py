@@ -29,7 +29,7 @@ class Solution:
     def countBinarySubstrings(self, s):
         seg = list(map(len, s.replace("01", "0 1").replace("10", "1 0").split()))
         return sum(min(a, b) for a, b in zip(seg, seg[1:]))
-    
+
 
 if __name__ == '__main__':
     from time import time

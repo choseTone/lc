@@ -75,6 +75,6 @@ if __name__ == '__main__':
         return out[:-2]
 
     t = time()
-    tree = list2tree([5,2,13])
+    tree = list2tree([5, 2, 13])
     ans = sol.convertBST(tree)
     print('ans: %s\ntime: %.3fms' % (tree2list(ans), ((time() - t)) * 1000))

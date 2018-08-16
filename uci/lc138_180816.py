@@ -14,7 +14,6 @@ class RandomListNode:
         self.next = None
         self.random = None
 
-
 import collections
 
 class Solution:
