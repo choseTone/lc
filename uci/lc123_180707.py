@@ -27,21 +27,31 @@ Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
 '''
 
+import math
 
 class Solution:
     # use dp to update two lists, prev and cur, storing the largest value achieved at index i
     # cur[i] profit is added on prev[i], indicates cur transaction's profit is built on prev transaction
     # update dp(prev and cur) 2 times means i can make 2 transactions: add my profit on 1 previous transactions
+    # def maxProfit(self, prices):
+    #     if not prices: return 0
+    #     n = len(prices)
+    #     cur = [0] * n
+    #     for _ in range(2):
+    #         prev, val = cur[:], cur[0] - prices[0]
+    #         for i in range(1, n):
+    #             cur[i] = max(cur[i - 1], val + prices[i])
+    #             val = max(val, prev[i] - prices[i])
+    #     return cur[n-1]
+
+    # updated on Aug.26th, use dp to update the kth buy and sell
     def maxProfit(self, prices):
-        if not prices: return 0
-        n = len(prices)
-        cur = [0] * n
-        for _ in range(2):
-            prev, val = cur[:], cur[0] - prices[0]
-            for i in range(1, n):
-                cur[i] = max(cur[i - 1], val + prices[i])
-                val = max(val, prev[i] - prices[i])
-        return cur[n-1]
+        buy, sell = [-math.inf] * 3, [0] * 3
+        for price in prices:
+            for i in range(1, 3):
+                buy[i] = max(buy[i], sell[i-1] - price)
+                sell[i] = max(sell[i], buy[i] + price)
+        return sell[2]
 
 
 if __name__ == '__main__':
