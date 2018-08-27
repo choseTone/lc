@@ -16,41 +16,40 @@ class Solution:
     def trap_two_passes(self, height):
         n = len(height)
         if n < 3: return 0
-        left, right = [height[0]], [height[-1]]
+        left, right = [height[0]], [height[n-1]]
         for i in range(1, n):
             left.append(max(left[-1], height[i]))
-        for i in range(n-1)[::-1]:
-            right = [max(right[0], height[i])] + right
+            right = [max(right[0], height[n-1-i])] + right
         return sum(min(left[i], right[i]) - height[i] for i in range(n))
 
     # o(n-2n) time; o(n) space
     def trap_stack(self, height):
         n, ans = len(height), 0
-        if n < 3: return ans
-        stack = [0]
-        for i in range(1, n):
-            while stack and height[i] > height[stack[-1]]:
-                trap = stack.pop()
-                if not stack: break
-                ans += (min(height[stack[-1]], height[i]) - height[trap]) * (i - stack[-1] - 1)
-            stack.append(i)
+        if n > 2:
+            stack = [0]
+            for i in range(1, n):
+                while stack and height[i] > height[stack[-1]]:
+                    trap = stack.pop()
+                    if not stack: break
+                    ans += (min(height[i], height[stack[-1]]) - height[trap]) * (i - stack[-1] - 1)
+                stack.append(i)
         return ans
 
     # o(n) time; o(1) space
     def trap_two_pointers(self, height):
         n, ans = len(height), 0
         if n < 3: return ans
-        left, right, lmax, rmax = 0, n - 1, 0, 0
-        while left <= right:
-            lh, rh = height[left], height[right]
+        l, r, lmax, rmax = 0, n - 1, 0, 0
+        while l <= r:
+            lh, rh = height[l], height[r]
             if lh < rh:
-                if lh < lmax: ans += (lmax - lh)
+                if lh < lmax: ans += lmax - lh
                 else: lmax = lh
-                left += 1
+                l += 1
             else:
-                if rh < rmax: ans += (rmax - rh)
+                if rh < rmax: ans += rmax - rh
                 else: rmax = rh
-                right -= 1
+                r -= 1
         return ans
 
 
