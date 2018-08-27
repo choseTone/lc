@@ -19,18 +19,31 @@ Explanation: 13 = 4 + 9.
 '''
 
 class Solution:
-    # update a dp list, for each round check all possible combinations of squares (1 square with length i
-    # and the smallest number of the rest squares has been calculated and stored in dp[-i*i]) and find the smallest
-    # dp[-i*i] and plus extra 1 (square with length i)
+    # def numSquares(self, n):
+    #     dp = [0]
+    #     while len(dp) <= n:
+    #         dp += min(dp[-i*i] for i in range(1, int(len(dp) ** 0.5) + 1)) + 1,
+    #     return dp[n]
+
+    # updated on Aug.27th
     def numSquares(self, n):
-        dp = [0]
-        while n >= len(dp):
-            dp.append(min(dp[-i*i] for i in range(1, int(len(dp)**0.5)+1)) + 1)
-        return dp[n]
+        if n < 2: return n
+        squares = [i * i for i in range(1, int(n ** 0.5) + 1)]
+        count, check = 0, {n}
+        while check:
+            count += 1
+            next_check = set()
+            for x in check:
+                for y in squares:
+                    if x == y: return count
+                    if x < y: break
+                    next_check.add(x - y)
+            check = next_check
+        return count
 
 
 if __name__ == '__main__':
     sol = Solution()
     t = time.time()
-    ans = sol.numSquares(1292)
+    ans = sol.numSquares(5374)
     print('ans: %d\ntime: %.2fms' % (ans, ((time.time()-t))*1000))
