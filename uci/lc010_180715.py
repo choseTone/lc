@@ -50,14 +50,14 @@ Output: false
 
 class Solution:
     def isMatch(self, s, p):
-        len_s, len_p = len(s), len(p)
-        match = [[False] * (len_p + 1) for _ in range(len_s + 1)]
-        match[len_s][len_p] = True
-        for i in range(len_s, -1, -1):
-            for j in range(len_p - 1, -1, -1):
-                one_match = i < len_s and p[j] in {'.', s[i]}
-                match[i][j] = match[i][j+2] or one_match and match[i+1][j] \
-                    if j+1 < len_p and p[j+1] == '*' else one_match and match[i+1][j+1]
+        ls, lp = len(s), len(p)
+        match = [[False] * (lp+1) for _ in range(ls+1)]
+        match[ls][lp] = True
+        for i in range(ls+1)[::-1]:
+            for j in range(lp)[::-1]:
+                curr_match = i < ls and p[j] in {'.', s[i]}
+                match[i][j] = match[i][j+2] or curr_match and match[i+1][j] if j+1 < lp and p[j+1] == '*' \
+                    else curr_match and match[i+1][j+1]
         return match[0][0]
 
 
