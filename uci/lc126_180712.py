@@ -41,9 +41,8 @@ class Solution:
     # use a begin set and a end set to build the word ladder from both sides
     # always build from the shorter set to save time for iteration
     def findLadders(self, beginWord, endWord, wordList):
-        self.lower_letters = 'abcdefghijklmnopqrstuvwxyz'
         wordList, bset, eset, ladder, word_size = \
-            set(wordList), {beginWord}, {endWord}, collections.defaultdict(list), len(beginWord)
+            set(wordList), {beginWord}, {endWord}, collections.defaultdict(set), len(beginWord)
         return self.construct(beginWord, endWord, ladder)\
             if endWord in wordList and self.search(bset, eset, ladder, True, wordList, word_size) else []
 
@@ -51,11 +50,12 @@ class Solution:
         if not bset: return False
         if len(bset) > len(eset):
             return self.search(eset, bset, ladder, not forward, wordList, word_size)
-        found, cache, wordList = False, set(), set([i for i in wordList if i not in bset and i not in eset])
+        found, cache, wordList = False, set(), wordList - eset - bset
         for word in bset:
             for i in range(word_size):
-                for c in self.lower_letters:
-                    new_word = word[:i] + c + word[i+1:]
+                prefix, suffix = word[:i], word[i+1:]
+                for c in 'abcdefghijklmnopqrstuvwxyz':
+                    new_word = prefix + c + suffix
                     if new_word in eset:
                         found = True
                         self.add_path(ladder, word, new_word, forward)
@@ -65,7 +65,7 @@ class Solution:
         return found or self.search(cache, eset, ladder, forward, wordList, word_size)
 
     def add_path(self, ladder, word, new_word, forward):
-        return ladder[word].append(new_word) if forward else ladder[new_word].append(word)
+        ladder[word].add(new_word) if forward else ladder[new_word].add(word)
 
     def construct(self, begin, end, ladder):
         return [[begin]] if begin == end \
