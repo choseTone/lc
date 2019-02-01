@@ -1,4 +1,4 @@
-#Summary_Python
+# Summary_Python
 685 		Directed Graph Cycle & UF
 
 802 		Directed Graph Cycle
@@ -19,7 +19,7 @@
 
 770 		Pythonic
 
-702/764 	Bisect
+668/764 	Bisect
 
 782 		Abstraction
 
