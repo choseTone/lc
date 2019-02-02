@@ -1,5 +1,5 @@
 # Summary_Python
-|             |                              |
+| LC No.      | Algorithms                   |
 |-------------|------------------------------|
 | 685         | Directed Graph Cycle & UF    |
 | 802         | Directed Graph Cycle         |
