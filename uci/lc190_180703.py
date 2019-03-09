@@ -19,7 +19,7 @@ If this function is called many times, how would you optimize it?
 class Solution:
     # use basic bit operations and mask techniques
     def reverseBits(self, n):
-        mask_8, mask_4, mask_2, mask_1 = 0xff00ff, 0xf0f0f0f0f, 0x33333333, 0x55555555
+        mask_8, mask_4, mask_2, mask_1 = 0xff00ff, 0xf0f0f0f, 0x33333333, 0x55555555
         n = n << 16 | n >> 16
         n = (n & mask_8) << 8 | (n >> 8) & mask_8
         n = (n & mask_4) << 4 | (n >> 4) & mask_4

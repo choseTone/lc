@@ -12,23 +12,18 @@ Note:
 You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
 Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
 '''
-import heapq
+import heapq, collections
 
 
 class Solution:
     def topKFrequent_sort(self, nums, k):
-        counter, n, ans = {}, len(nums), []
-        for num in nums:
-            counter[num] = counter.get(num, 0) + 1
-        return sorted(counter.keys(), key=lambda x: counter[x], reverse=True)[:k]
+        counter = collections.Counter(nums)
+        return sorted(counter.keys(), key=lambda x: -counter[x])[:k]
 
     def topKFrequent_bucket(self, nums, k):
-        counter, n, ans = {}, len(nums), []
-        bucket = [[] for _ in range(n+1)]
-        for num in nums:
-            counter[num] = counter.get(num, 0) + 1
-        for num, freq in counter.items():
-            bucket[freq].append(num)
+        counter, n, ans = collections.Counter(nums), len(nums), []
+        bucket = collections.defaultdict(list)
+        for num, freq in counter.items(): bucket[freq].append(num)
         # choose top k freq' numbers from bucket, need to remove extra equal-freq numbers
         while len(bucket[n]) < k - len(ans):
             ans += bucket[n]
@@ -36,14 +31,11 @@ class Solution:
         return ans + bucket[n][:k - len(ans)]
 
     def topKFrequent_heap(self, nums, k):
-        counter, n, ans = {}, len(nums), []
-        for num in nums:
-            counter[num] = counter.get(num, 0) + 1
+        counter, ans = collections.Counter(nums), []
         # pop the number with smallest freq out of the full-filled heap
         for num, freq in counter.items():
             heapq.heappush(ans, (freq, num))
-            if len(ans) > k:
-                heapq.heappop(ans)
+            if len(ans) > k: heapq.heappop(ans)
         return [i[1] for i in ans]
 
 
