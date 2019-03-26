@@ -8,6 +8,7 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 def buildTree(preorder, inorder):
     if inorder:
         root_val = preorder.pop(0)

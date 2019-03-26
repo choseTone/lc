@@ -10,7 +10,6 @@ class TreeNode:
 
 
 class BSTIterator:
-
     def __init__(self, root):
         self.stack = []
         self.push(root)

@@ -8,6 +8,7 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 def deleteNode(root, key):
     if not root: return None
     if root.val > key:

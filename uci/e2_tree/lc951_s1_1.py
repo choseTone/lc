@@ -8,6 +8,7 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 def flipEquiv(r1, r2):
     return bool(not (r1 or r2)
                 or r1 and r2 and r1.val == r2.val

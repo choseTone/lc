@@ -8,6 +8,7 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 def diameterOfBinaryTree(root):
     d = 0
 
