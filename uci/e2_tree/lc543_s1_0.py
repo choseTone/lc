@@ -1,22 +1,6 @@
 __author__ = 'wangqc'
 
-'''
-543. Diameter of Binary Tree
-
-Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the 
-length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
-
-Example:
-Given a binary tree 
-          1
-         / \
-        2   3
-       / \     
-      4   5    
-Return 3, which is the length of the path [4,2,1,3] or [5,2,1,3].
-Note: The length of path between two nodes is represented by the number of edges between them.
-'''
-
+# https://leetcode.com/problems/diameter-of-binary-tree/discuss/253095/Python-Recursion
 
 class TreeNode:
     def __init__(self, x):
@@ -24,47 +8,16 @@ class TreeNode:
         self.left = None
         self.right = None
 
+def diameterOfBinaryTree(root):
+    d = 0
 
-class Solution:
-    def diameterOfBinaryTree(self, root):
-        self.ans = 0
-        self.diameter(root)
-        return self.ans
-
-    def diameter(self, node):
+    def diameter(node):
+        nonlocal d
         if not node: return 0
-        left, right = self.diameter(node.left), self.diameter(node.right)
-        self.ans = max(self.ans, left + right)
-        return max(left, right) + 1
+        l, r = diameter(node.left), diameter(node.right)
+        d = max(d, l + r)
+        return max(l, r) + 1
 
+    diameter(root)
+    return d
 
-
-
-if __name__ == '__main__':
-    from time import time
-
-    sol = Solution()
-
-    def list2tree(nums):
-        root = TreeNode(int(nums[0]))
-        nodeQueue = [root]
-        front, index = 0, 1
-        while index < len(nums):
-            node, item = nodeQueue[front], nums[index]
-            front, index = front + 1, index + 1
-            if item:
-                node.left = TreeNode(item)
-                nodeQueue.append(node.left)
-            if index >= len(nums):
-                break
-            item = nums[index]
-            index += 1
-            if item:
-                node.right = TreeNode(item)
-                nodeQueue.append(node.right)
-        return root
-
-
-    t = time()
-    ans = sol.diameterOfBinaryTree(list2tree([1,2,3,4,5]))
-    print('ans: %s\ntime: %.3fms' % (ans, ((time() - t)) * 1000))
