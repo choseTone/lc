@@ -1,20 +1,38 @@
 __author__ = 'wangqc'
 
-# https://leetcode.com/problems/redundant-connection-ii/discuss/270795/Python-Either-Two-Parents-or-Has-Cycle-(UF)
+# https://leetcode.com/problems/evaluate-division/discuss/270993/Python-BFS-and-UF(detailed-explanation)
 
-def findRedundantDirectedConnection(edges):
-	n, p1, p2, c = len(edges), None, None, None
-	p = [0] * (n+1)
-	for i, (u,v) in enumerate(edges):
-		if p[v]: p1, p2, c, edges[i][0] = p[v], u, v, 0
-		else: p[v] = u
-	p = list(range(n+1))
+import collections
+
+def calcEquation(equations, values, queries):
+	g = collections.defaultdict(set)
+	for (x, y), v in zip(equations, values):
+		g[x].add((y, v))
+		g[y].add((x, 1/v))
+	def bfs(src, dst):
+		if not (src in g and dst in g): return -1.0
+		q, seen = [(src, 1.0)], set()
+		for x, v in q:
+			if x == dst: return v
+			seen.add(x)
+			for y, k in g[x]:
+				if y not in seen: q.append((y, v*k))
+		return -1.0
+	return [bfs(s, d) for s, d in queries]
+
+def calcEquationUF(equations, values, queries):
+	root = {}
 	def find(x):
-		if p[x] != x: p[x] = find(p[x])
-		return p[x]
-	for u, v in edges:
-		if u:
-			pu, pv = find(u), find(v)
-			if pu == pv: return p1 and [p1, c] or [u, v]
-			else: p[pv] = pu
-	return [p2, c]
+		p, v = root.setdefault(x, (x, 1.0))
+		if x != p:
+			r, vp = find(p)
+			root[x] = (r, vp*v)
+		return root[x]
+	for (x, y), v in zip(equations, values):
+		(px, vx), (py, vy) = find(x), find(y)
+		if px != py: root[px] = (py, vy*v/vx)
+	def q(x, y):
+		if not (x in root and y in root): return -1.0
+		(px, vx), (py, vy) = find(x), find(y)
+		return vx / vy if px == py else -1.0
+	return [q(x, y) for x, y in queries]

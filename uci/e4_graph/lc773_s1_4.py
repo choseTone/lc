@@ -1,23 +1,13 @@
 __author__ = 'wangqc'
 
-# https://leetcode.com/problems/word-search-ii/discuss/269110/python-clean-trie-dfs
+# https://leetcode.com/problems/sliding-puzzle/discuss/269125/python-short-bfs
 
-def findWords(board, words):
-	trie, ans, m, n = {}, set(), len(board), len(board) and len(board[0])
-	for word in words:
-		node = trie
-		for c in word: node = node.setdefault(c, {})
-		node['$'] = None
-	def dfs(i, j, node, word):
-		if board[i][j] in node:
-			board[i][j], c = '', board[i][j]
-			node, word = node[c], word + c
-			if '$' in node: ans.add(word)
-			for x, y in ((i-1,j),(i+1,j),(i,j-1),(i,j+1)):
-				if 0 <= x < m and 0 <= y < n:
-					dfs(x, y, node, word)
-			board[i][j] = c
-	for i in range(m):
-		for j in range(n):
-			dfs(i, j, trie, '')
-	return list(ans)
+def slidingPuzzle(board):
+	def swap(s, i, j): return s[:i]+s[j]+s[i+1:j]+s[i]+s[j+1:] if i < j else s[:j]+s[i]+s[j+1:i]+s[j]+s[i+1:]
+	g, s, seen = {0:{1,3},1:{0,2,4},2:{1,5},3:{0,4},4:{1,3,5},5:{2,4}}, ''.join(map(str, sum(board,[]))), set()
+	q = [(s.index('0'), s, 0)]
+	for i, s, k in q:
+		if s == '123450': return k
+		seen.add(s)
+		q += [(j, ns, k+1) for j in g[i] for ns in {swap(s, i, j)} if ns not in seen]
+	return -1

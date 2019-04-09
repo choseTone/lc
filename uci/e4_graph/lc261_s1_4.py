@@ -1,17 +1,24 @@
 __author__ = 'wangqc'
 
-# https://leetcode.com/problems/the-maze/discuss/269158/python-dfs
+# https://leetcode.com/problems/graph-valid-tree/discuss/269173/python-bfs-uf
 
-def hasPath(maze, start, destination):
-	m, n, seen = len(maze), len(maze[0]), set()
-	def dfs(i, j):
-		if [i, j] == destination: return True
-		for dx, dy in ((0,-1),(0,1),(-1,0),(1,0)):
-			x, y = i, j
-			while 0 <= x+dx < m and 0 <= y+dy < n and not maze[x+dx][y+dy]:
-				x, y = x+dx, y+dy
-			if (x,y) not in seen:
-				seen.add((x,y))
-				if dfs(x,y): return True
-		return False
-	return dfs(*start)
+def validTree(n, edges):
+	if len(edges) != n-1: return False
+	g, q = {i:[] for i in range(n)}, [0]
+	for u, v in edges:
+		g[u].append(v), g[v].append(u)
+	for x in q:
+		q += g.pop(x, [])
+	return not g
+
+def validTreeUF(n, edges):
+	if len(edges) != n-1: return False
+	p = list(range(n))
+	def find(x):
+		if p[x] != x: p[x] = find(p[x])
+		return p[x]
+	for x, y in edges:
+		px, py = find(x), find(y)
+		if px == py: return False
+		p[px] = py
+	return True

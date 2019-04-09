@@ -1,18 +1,12 @@
 __author__ = 'wangqc'
 
-# https://leetcode.com/problems/minimum-height-trees/discuss/269060/Python-Topological
+# https://leetcode.com/problems/is-graph-bipartite/discuss/269084/python-concise-dfs
 
-import collections
-
-def findMinHeightTrees(n, edges):
-	tree = [set() for _ in range(n)]
-	for u, v in edges: tree[u].add(v), tree[v].add(u)
-	q, nq = [x for x in range(n) if len(tree[x]) < 2], []
-	while True:
-		for x in q:
-			for y in tree[x]:
-				tree[y].remove(x)
-				if len(tree[y]) == 1: nq.append(y)
-		if not nq: break
-		nq, q = [], nq
-	return q
+def isBipartite(graph):
+	group = {}
+	def dfs(x, g):
+		if x in group:
+			return g == group[x]
+		group[x] = g
+		return all(dfs(y, 1-g) for y in graph[x])
+	return all(dfs(x, 0) for x in range(len(graph)) if x not in group)

@@ -1,13 +1,18 @@
 __author__ = 'wangqc'
 
-# https://leetcode.com/problems/number-of-distinct-islands/discuss/266818/python-dfs-hashset
+# https://leetcode.com/problems/minesweeper/discuss/266826/python-dfs
 
-def numDistinctIslands(grid):
-	m, n = len(grid), len(grid[0])
-	grid.append([0]*n)
-	for row in grid: row.append(0)
-	def dfs(i,j,path):
-		if not grid[i][j]: return ''
-		grid[i][j] = 0
-		return path + dfs(i-1,j,'u') + 'd' + dfs(i+1,j,'d') + 'u' + dfs(i,j-1,'l') + 'r' + dfs(i,j+1,'r') + 'l'
-	return len({dfs(i,j,'') for i in range(m) for j in range(n) if grid[i][j]})
+def updateBoard(board, click):
+	i, j, m, n = *click, len(board), len(board[0])
+	def dfs(i, j):
+		if board[i][j] == 'E':
+			neis = [(x,y) for x, y in ((i-1,j-1),(i-1,j),(i-1,j+1),(i,j-1),(i,j),(i,j+1),(i+1,j-1),(i+1,j),(i+1,j+1))
+					if 0 <= x < m and 0 <= y < n]
+			cnt = sum(board[x][y]=='M' for x,y in neis)
+			if not cnt:
+				board[i][j] = 'B'
+				for x, y in neis: dfs(x,y)
+			else: board[i][j] = str(cnt)
+	if board[i][j] == 'M': board[i][j] = 'X'
+	else: dfs(i,j)
+	return board

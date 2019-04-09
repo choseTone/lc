@@ -1,13 +1,17 @@
 __author__ = 'wangqc'
 
-# https://leetcode.com/problems/sliding-puzzle/discuss/269125/python-short-bfs
+# https://leetcode.com/problems/the-maze/discuss/269158/python-dfs
 
-def slidingPuzzle(board):
-	def swap(s, i, j): return s[:i]+s[j]+s[i+1:j]+s[i]+s[j+1:] if i < j else s[:j]+s[i]+s[j+1:i]+s[j]+s[i+1:]
-	g, s, seen = {0:{1,3},1:{0,2,4},2:{1,5},3:{0,4},4:{1,3,5},5:{2,4}}, ''.join(map(str, sum(board,[]))), set()
-	q = [(s.index('0'), s, 0)]
-	for i, s, k in q:
-		if s == '123450': return k
-		seen.add(s)
-		q += [(j, ns, k+1) for j in g[i] for ns in {swap(s, i, j)} if ns not in seen]
-	return -1
+def hasPath(maze, start, destination):
+	m, n, seen = len(maze), len(maze[0]), set()
+	def dfs(i, j):
+		if [i, j] == destination: return True
+		for dx, dy in ((0,-1),(0,1),(-1,0),(1,0)):
+			x, y = i, j
+			while 0 <= x+dx < m and 0 <= y+dy < n and not maze[x+dx][y+dy]:
+				x, y = x+dx, y+dy
+			if (x,y) not in seen:
+				seen.add((x,y))
+				if dfs(x,y): return True
+		return False
+	return dfs(*start)

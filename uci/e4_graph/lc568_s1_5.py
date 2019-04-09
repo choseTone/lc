@@ -1,24 +1,12 @@
 __author__ = 'wangqc'
 
-# https://leetcode.com/problems/graph-valid-tree/discuss/269173/python-bfs-uf
+# https://leetcode.com/problems/maximum-vacation-days/discuss/212355/Python-Graph-and-DP
 
-def validTree(n, edges):
-	if len(edges) != n-1: return False
-	g, q = {i:[] for i in range(n)}, [0]
-	for u, v in edges:
-		g[u].append(v), g[v].append(u)
-	for x in q:
-		q += g.pop(x, [])
-	return not g
-
-def validTreeUF(n, edges):
-	if len(edges) != n-1: return False
-	p = list(range(n))
-	def find(x):
-		if p[x] != x: p[x] = find(p[x])
-		return p[x]
-	for x, y in edges:
-		px, py = find(x), find(y)
-		if px == py: return False
-		p[px] = py
-	return True
+def maxVacationDays(flights, days):
+	n, k = len(days), len(days[0])
+	g = [[j for j, dst in enumerate(city) if dst]+[i] for i, city in enumerate(flights)]
+	dp = [[0] * n for _ in range(k+1)]
+	for w in range(k)[::-1]:
+		for c in range(n):
+			dp[w][c] = days[c][w] + max(dp[w+1][dst] for dst in g[c])
+	return max(dp[0][dst] for dst in g[0])
