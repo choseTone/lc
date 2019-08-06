@@ -8,7 +8,7 @@ class ValidWordAbbr:
     def __init__(self, dictionary):
         self.dict = collections.defaultdict(set)
         for word in dictionary:
-            self.dict[f"{word[0]}{len(word)}{word[-1]}"].add(word)
+            if word: self.dict[f"{word[0]}{len(word)}{word[-1]}"].add(word)
 
     def isUnique(self, word):
         return not word or self.dict[f"{word[0]}{len(word)}{word[-1]}"] <= {word}
@@ -16,7 +16,7 @@ class ValidWordAbbr:
 
 if __name__ == '__main__':
 
-    obj = ValidWordAbbr(["deer","door","cake","card"])
+    obj = ValidWordAbbr(["", "deer","door","cake","card"])
     print(obj.isUnique("dear"))
     print(obj.isUnique("cart"))
     print(obj.isUnique("cane"))
