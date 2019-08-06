@@ -1,5 +1,5 @@
 __author__ = 'wangqc'
-# https://leetcode.com/problems/palindrome-linked-list/
+# https://leetcode.com/problems/distant-barcodes/
 
 import collections, heapq
 
