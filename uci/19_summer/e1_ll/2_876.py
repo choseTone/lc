@@ -1,29 +1,25 @@
 __author__ = 'wangqc'
-# https://leetcode.com/problems/palindrome-linked-list/
+# https://leetcode.com/problems/middle-of-the-linked-list/
 
-from utils import ListNode, Utils
+from utils import Utils
 
 
 class Solution:
-    def isPalindrome(self, head):
+    def middleNode(self, head):
         slow = fast = head
-        rev = None
         while fast and fast.next:
-            fast = fast.next.next
-            slow.next, rev, slow = rev, slow, slow.next
-        if fast:  # pass the mid point of an odd-length list
-            slow = slow.next
-        while slow and slow.val == rev.val:
-            slow, rev = slow.next, rev.next
-        return not rev
+            slow, fast = slow.next, fast.next.next
+        return slow
 
 
 if __name__ == '__main__':
 
     sol, util = Solution(), Utils()
 
-    t1 = util.list2node([1,2]),
-    print(sol.isPalindrome(*t1))
+    t1 = util.list2node([1,2,3,4,5]),
+    r1 = sol.middleNode(*t1)
+    print(util.node2list(r1))
 
-    t2 = util.list2node([1,2,2,1]),
-    print(sol.isPalindrome(*t2))
+    t2 = util.list2node([1,2,3,4,5,6]),
+    r2 = sol.middleNode(*t2)
+    print(util.node2list(r2))
