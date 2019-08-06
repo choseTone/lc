@@ -13,7 +13,7 @@ class Solution:
         slow.next, slow, rev = None, slow.next, None    # break from half
         while slow:                 # reverse second half which could be shorter
             slow.next, rev, slow = rev, slow, slow.next
-        while rev:                  # merge two halves
+        while rev:                  # merge two halves: head and rev
             head.next, rev.next, head, rev = rev, head.next, head.next, rev.next
         return dummy.next
 
