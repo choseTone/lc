@@ -10,8 +10,7 @@ class Solution:
     def convert(self, email):
         x, domain = email.split('@')
         i = x.find('+')
-        if i >= 0: x = x[:i]
-        return f"{x.replace('.', '')}@{domain}"
+        return f"{(x if i<0 else x[:i]).replace('.', '')}@{domain}"
 
 
 if __name__ == '__main__':
