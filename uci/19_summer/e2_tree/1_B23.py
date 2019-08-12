@@ -10,12 +10,9 @@ class Solution:
             if not node:
                 return None, d
             ln, ld, rn, rd = *dfs(node.left, d + 1), *dfs(node.right, d + 1)
-            if ld > rd:
-                return ln, ld
-            elif ld < rd:
-                return rn, rd
-            else:
-                return node, ld
+            return (ln, ld) if ld > rd \
+                else (rn, rd) if ld < rd \
+                else (node, ld)
 
         return dfs(root, 0)[0]
 
