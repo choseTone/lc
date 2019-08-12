@@ -19,7 +19,7 @@ class LRUCache:
         self.head.next, self.tail.prev = self.tail, self.head
         self.sz = 0
 
-    def add(self, node, key=None):
+    def insert(self, node, key=None):
         node.prev, node.next = self.head, self.head.next
         self.head.next = node.next.prev = node
         if key:
@@ -28,7 +28,7 @@ class LRUCache:
 
     def update(self, node, val=None):
         node.prev.next, node.next.prev = node.next, node.prev
-        self.add(node)
+        self.insert(node)
         if val:
             node.val = val
 
@@ -46,7 +46,7 @@ class LRUCache:
 
     def put(self, key, val):
         if key not in self.keys:
-            self.add(Node(key, val), key)
+            self.insert(Node(key, val), key)
             if self.sz > self.cap:
                 self.evict()
         else:
