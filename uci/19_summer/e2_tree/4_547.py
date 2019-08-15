@@ -49,6 +49,7 @@ class Solution:
                     px, py = py, px
                 p[py] = px
                 rank[px] += 1
+
         for i in range(n):
             for j in range(i+1, n):
                 if M[i][j]: union(i, j)
