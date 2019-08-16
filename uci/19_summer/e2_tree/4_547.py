@@ -56,7 +56,6 @@ class Solution:
         return len(set(map(find, range(n))))
 
 
-
 if __name__ == '__main__':
     sol = Solution()
 

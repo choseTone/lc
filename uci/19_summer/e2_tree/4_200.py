@@ -29,9 +29,6 @@ class Solution:
         return sum(bfs(i,j) for i in range(m) for j in range(n) if grid[i][j] == "1")
 
 
-
-
-
 if __name__ == '__main__':
     sol = Solution()
 
