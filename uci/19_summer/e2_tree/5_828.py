@@ -15,8 +15,6 @@ class Solution:
         return cnt + sum((dp[c][1]-dp[c][0]) * (N-dp[c][1]) % M for c in dp) % M
 
 
-
-
 if __name__ == '__main__':
     sol = Solution()
 
