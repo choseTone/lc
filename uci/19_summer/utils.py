@@ -37,14 +37,14 @@ class Utils:
         while index < len(A):
             node, item = q[front], A[index]
             front, index = front + 1, index + 1
-            if item:
+            if item is not None:
                 node.left = TreeNode(item)
                 q.append(node.left)
             if index >= len(A):
                 break
             item = A[index]
             index += 1
-            if item:
+            if item is not None:
                 node.right = TreeNode(item)
                 q.append(node.right)
         return root
