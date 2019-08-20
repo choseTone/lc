@@ -34,6 +34,7 @@ class Solution:
                 else:
                     return m
             return -1
+
         x = bisearch(0, l, 1)
         return x if x >= 0 else bisearch(l, A.length() - 1, -1)
 
