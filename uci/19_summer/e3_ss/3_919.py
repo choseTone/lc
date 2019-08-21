@@ -1,29 +1,36 @@
 __author__ = 'wangqc'
 
-# https://leetcode.com/problems/next-greater-element-ii/
+# https://leetcode.com/problems/online-election/
+
+from collections import Counter
+import bisect
 
 
-import heapq
+class TopVotedCandidate:
+    def __init__(self, persons, times):
+        self.counter, self.ts = Counter(), []
+        lead, prev = None, 0
+        for p, t in zip(persons, times):
+            self.counter[p] += 1
+            curr = self.counter[p]
+            if curr >= prev:
+                if lead != p:
+                    self.ts.append((t, p))
+                    lead = p
+                prev = curr
 
 
-class Solution:
-    def nextGreaterElements(self, nums):
-        N = len(nums)
-        stack, idx = [], [-1] * N
-
-        def scan(right):
-            for i, x in enumerate(nums):
-                while stack and nums[stack[-1]] < x:
-                    idx[stack.pop()] = x
-                if right:
-                    stack.append(i)
-
-        scan(True), scan(False)
-        return idx
+    def q(self, t):
+        i = bisect.bisect_left(self.ts, (t+1,)) - 1
+        return self.ts[i][1]
 
 
 if __name__ == '__main__':
-    sol = Solution()
-
-    t1 = [1, 2, 3, 4, 5, 4, 3, 2, 1],
-    print(sol.nextGreaterElements(*t1))
+    obj = TopVotedCandidate([0, 1, 1, 0, 0, 1, 0], [0, 5, 10, 15, 20, 25, 30])
+    print(obj.q(3))
+    print(obj.q(12))
+    print(obj.q(25))
+    print(obj.q(15))
+    print(obj.q(24))
+    print(obj.q(8))
+    print(obj.q(17))

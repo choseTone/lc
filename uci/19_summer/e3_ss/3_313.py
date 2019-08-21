@@ -1,32 +1,25 @@
 __author__ = 'wangqc'
 
-# https://leetcode.com/problems/find-peak-element/
+# https://leetcode.com/problems/super-ugly-number/
 
 
-from collections import Counter
+import heapq
+
 
 class Solution:
-    def threeSum(self, nums):
-        if len(nums) < 3:
-            return []
-        counter = Counter(nums)
-        tri = [[0,0,0]] if counter[0] > 2 else []
-        pos, neg = [x for x in counter if x >= 0], [x for x in counter if x < 0]
-        for n in neg:
-            for p in pos:
-                x = -p-n
-                if x in counter:
-                    if x in {p, n} and counter[x] > 1:
-                        tri.append([n,x,p])
-                    if x < n:
-                        tri.append([x,n,p])
-                    if x > p:
-                        tri.append([n,p,x])
-        return tri
+    def nthSuperUglyNumber(self, n, primes):
+        cand = [(p, p, 1) for p in primes]
+        nums = [1]
+        for _ in range(n - 1):
+            nums.append(cand[0][0])
+            while cand[0][0] == nums[-1]:
+                _, p, i = heapq.heappop(cand)
+                heapq.heappush(cand, (nums[i] * p, p, i + 1))
+        return nums[n - 1]
 
 
 if __name__ == '__main__':
     sol = Solution()
 
-    t1 = [-1, 0, 1, 2, -1, -4],
-    print(sol.threeSum(*t1))
+    t1 = 212, [2, 7, 13, 19],
+    print(sol.nthSuperUglyNumber(*t1))
