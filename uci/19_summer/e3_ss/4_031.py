@@ -1,6 +1,6 @@
 __author__ = 'wangqc'
 
-# https://leetcode.com/problems/3sum-closest/
+# https://leetcode.com/problems/next-permutation/
 
 import bisect
 
