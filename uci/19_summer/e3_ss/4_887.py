@@ -48,4 +48,4 @@ if __name__ == '__main__':
     print(sol.superEggDropDP(*t1), time.time()-t)
 
     t = time.time()
-    print(sol.superEggDropMath(*t1), time.time() - t)
+    print(sol.superEggDropMath(*t1), time.time()-t)
