@@ -22,10 +22,6 @@ class Solution:
         return paths
 
 
-
-
-
-
 if __name__ == '__main__':
     sol = Solution()
 
