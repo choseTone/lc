@@ -4,20 +4,20 @@ __author__ = 'wangqc'
 
 class Solution:
     def ladderLength(self, beginWord, endWord, wordList):
-        words = set(wordList)
+        words, N = set(wordList), len(beginWord)
         if endWord not in words:
             return 0
 
         def gen_nei_word(word):
-            for i in range(len(word)):
+            for i in range(N):
                 for c in "qwertyuiopasdfghjklzxcvbnm":
                     if c != word[i]:
-                        nei_word = word[:i] + c + word[i + 1:]
-                        if nei_word != word and nei_word in words:
-                            yield nei_word
+                        candidate = word[:i] + c + word[i + 1:]
+                        if candidate in words:
+                            yield candidate
 
-        begins, ends, d, seen = {beginWord}, {endWord}, 2, {beginWord}
-        while begins and ends:
+        begins, ends, d, seen = {beginWord}, {endWord}, 2, {beginWord, endWord}
+        while begins:
             if len(begins) > len(ends):
                 begins, ends = ends, begins
             next_begins = set()
