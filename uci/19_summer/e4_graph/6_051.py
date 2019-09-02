@@ -7,6 +7,8 @@ class Solution:
     def solveNQueens(self, n):
         solutions = []
 
+        # fs forward diagonal, if x1+y1==x2+y2, (x1,y1),(x2,y2) are in the same fs
+        # bs as back diagonal, if x1-y1==x2-y2, (x1,y1),(x2,y2) are in the same bs
         def dfs(state, fs, bs):
             row = len(state)
             if row == n:
