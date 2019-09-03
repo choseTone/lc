@@ -5,12 +5,12 @@ __author__ = 'wangqc'
 
 class Solution:
     def eraseOverlapIntervals(self, intervals):
-        cnt, bound = 0, float('-inf')
+        cnt, border = 0, float('-inf')
         for s, e in sorted(intervals, key=lambda x:x[1]):
-            if s < bound:
+            if s < border:
                 cnt += 1
             else:
-                bound = e
+                border = e
         return cnt
 
 
