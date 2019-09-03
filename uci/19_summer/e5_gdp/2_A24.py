@@ -16,8 +16,6 @@ class Solution:
         return cnt if reach >= T else -1
 
 
-
-
 if __name__ == '__main__':
     sol = Solution()
 
