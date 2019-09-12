@@ -24,5 +24,5 @@ if __name__ == '__main__':
     t2 = [3,2], 2, 0, 1,
     print(sol.dietPlanPerformance(*t2))
 
-    t2 = [6,5,0,0], 2, 1, 5,
-    print(sol.dietPlanPerformance(*t2))
+    t3 = [6,5,0,0], 2, 1, 5,
+    print(sol.dietPlanPerformance(*t3))
