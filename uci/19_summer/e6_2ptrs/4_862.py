@@ -8,17 +8,16 @@ from collections import deque
 
 class Solution:
     def shortestSubarray(self, A, K):
-        presum, N = [0], len(A)
-        for x in A:
-            presum.append(presum[-1] + x)
+        agg, N = 0, len(A)
         min_len = N + 1
-        q = deque()
-        for i, p in enumerate(presum):
-            while q and p - presum[q[0]] >= K:
-                min_len = min(min_len, i-q.popleft())
-            while q and p <= presum[q[-1]]:
+        q = deque([(-1, 0)])
+        for i, x in enumerate(A):
+            agg += x
+            while q and agg - q[0][1] >= K:
+                min_len = min(min_len, i-q.popleft()[0])
+            while q and agg <= q[-1][1]:
                 q.pop()
-            q.append(i)
+            q.append((i, agg))
         return min_len if min_len < N + 1 else -1
 
 
