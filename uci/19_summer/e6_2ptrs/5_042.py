@@ -6,22 +6,21 @@ __author__ = 'wangqc'
 class Solution:
     def trap(self, height):
         N, water = len(height), 0
-        if N > 2:
-            l, r, lmax, rmax = 0, N-1, 0, 0
-            while l < r:
-                lh, rh = height[l], height[r]
-                if lh < rh:
-                    if lh < lmax:
-                        water += lmax-lh
-                    else:
-                        lmax = lh
-                    l += 1
+        i, j, maxi, maxj = 0, N-1, 0, 0
+        while i < j:
+            hi, hj = height[i], height[j]
+            if hi < hj:
+                if hi < maxi:
+                    water += maxi-hi
                 else:
-                    if rh < rmax:
-                        water += rmax-rh
-                    else:
-                        rmax = rh
-                    r -= 1
+                    maxi = hi
+                i += 1
+            else:
+                if hj < maxj:
+                    water += maxj-hj
+                else:
+                    maxj = hj
+                j -= 1
         return water
 
 
