@@ -17,7 +17,7 @@ class Solution:
                 while len(line) > 1 and inclusive(line[-2], line[-1], p):
                     line.pop()
                 line.append(p)
-            return line[::-1]
+            return line
 
         points = sorted((x, y) for x, y in points)
         return [[x, y] for x, y in set(draw(points) + draw(points[::-1]))]
