@@ -6,6 +6,16 @@ __author__ = 'wangqc'
 class Solution:
     def calculate(self, s):
         i, ops, vals, N, O = 0, [], [], len(s), ord("0")
+
+        def operate():
+            op, y, x = ops.pop(), vals.pop(), vals.pop()
+            vals.append(
+                x + y if op == "+" else
+                x - y if op == "-" else
+                x * y if op == "*" else
+                x // y
+            )
+
         while i < N:
             if s[i].isdigit():
                 x = 0
@@ -19,11 +29,11 @@ class Solution:
                     ops.append(c)
                 if c == ")":
                     while ops[-1] != "(":
-                        vals.append(self.operate(ops.pop(), vals.pop(), vals.pop()))
+                        operate()
                     ops.pop()
                 if c in "+-*/":
                     while ops and ops[-1] != "(" and not(ops[-1] in "+-" and c in "*/"):
-                        vals.append(self.operate(ops.pop(), vals.pop(), vals.pop()))
+                        operate()
                     ops.append(c)
                     if c == "-":
                         j = i-1
@@ -33,19 +43,8 @@ class Solution:
                             vals.append(0)
                 i += 1
         while ops:
-            vals.append(self.operate(ops.pop(), vals.pop(), vals.pop()))
+            operate()
         return min(max(-2**31, vals.pop()), 2**31-1)
-
-    def operate(self, op, y, x):
-        if op == "+":
-            return x + y
-        if op == "-":
-            return x - y
-        if op == "*":
-            return x * y
-        if op == "/":
-            return x // y
-        return 0
 
 
 if __name__ == '__main__':
