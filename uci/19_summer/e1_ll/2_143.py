@@ -1,21 +1,22 @@
 __author__ = 'wangqc'
 # https://leetcode.com/problems/reorder-list/
 
-from utils import ListNode, Utils
+from utils import Utils
 
 
 class Solution:
     def reorderList(self, head):
-        dummy = slow = fast = ListNode(0)
-        dummy.next = head
+        slow = fast = head
         while fast and fast.next:
             slow, fast = slow.next, fast.next.next
-        slow.next, slow, rev = None, slow.next, None    # break from half
-        while slow:                 # reverse second half which could be shorter
-            slow.next, rev, slow = rev, slow, slow.next
-        while rev:                  # merge two halves: head and rev
-            head.next, rev.next, head, rev = rev, head.next, head.next, rev.next
-        return dummy.next
+        rev, node = None, head
+        while slow:
+            slow.next, rev, slow = rev, slow, slow.next  # second half to be cut off later
+        while rev:
+            node.next, rev.next, node, rev = rev, node.next, node.next, rev.next
+        if node:
+            node.next = None  # cut off the second half
+        return head
 
 
 if __name__ == '__main__':
