@@ -18,6 +18,26 @@ class Solution:
             root = stack.pop().right
         return nodes
 
+    # No recursion and O(1) space
+    def inorderTraversalMorr(self, root):
+        nodes = []
+        while root:
+            if root.left:
+                pred = root.left
+                while pred.right and pred.right != root:
+                    pred = pred.right
+                if pred.right:
+                    nodes.append(root.val)
+                    pred.right = None
+                    root = root.right
+                else:
+                    pred.right = root
+                    root = root.left
+            else:
+                nodes.append(root.val)
+                root = root.right
+        return nodes
+
 
 if __name__ == '__main__':
 
@@ -26,8 +46,10 @@ if __name__ == '__main__':
     t1 = util.list2tree([1,2,3,4,5,None,7]),
     print(sol.inorderTraversalRecu(*t1))
     print(sol.inorderTraversalIter(*t1))
+    print(sol.inorderTraversalMorr(*t1))
 
     t2 = util.list2tree([3,5,1,6,7,4,2,None,None,None,None,None,None,9,8]),
     print(sol.inorderTraversalRecu(*t2))
     print(sol.inorderTraversalIter(*t2))
+    print(sol.inorderTraversalMorr(*t2))
 
