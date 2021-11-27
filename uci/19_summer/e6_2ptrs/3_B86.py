@@ -5,17 +5,18 @@ __author__ = 'wangqc'
 
 class Solution:
     def maximumSum(self, arr):
-        s1 = s2 = min1 = min2 = 0
-        max_min_sum = float('-inf')
-        for x in arr:
-            if s1 <= 0:
-                s1 = min1 = 0
-            if s2 <= min2:
-                s2 = min2 = 0
-            s1, s2 = s1 + x, s2 + x
-            max_min_sum = max(max_min_sum, s1 - min1, s2 - min2)
-            min1, min2 = min(min1, x), min(min2, x)
-        return max_min_sum
+        n = len(arr)
+        fwd, bwd = [0] * n, [0] * n
+        ans, s = arr[0], 0
+        for i, x in enumerate(arr):
+            fwd[i] = (s := max(x, s+x))
+            ans = max(ans, s)
+        s = 0
+        for i, x in enumerate(arr[::-1]):
+            bwd[n-i-1] = (s := max(x, s+x))
+        for i in range(1, n-1):
+            ans = max(ans, fwd[i-1]+bwd[i+1])  # subarray that deletes arr[i]
+        return ans
 
 
 if __name__ == '__main__':
@@ -29,3 +30,6 @@ if __name__ == '__main__':
 
     t3 = [-8,7,-12,-1,0,11,-2,-3,4,-13,2,3,-6],
     print(sol.maximumSum(*t3))
+
+    t4 = [1,-10,2,-10,3],
+    print(sol.maximumSum(*t4))
